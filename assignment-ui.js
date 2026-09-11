@@ -1,15 +1,17 @@
 (() => {
   // Point this to your secured n8n/API domain. Never place secrets in this file.
   const CONFIG = {
-    apiBaseUrl: 'https://automation.sionsemi.com',
-    extractPath: 'https://automation.sionsemi.com/webhook/assignment/extract',
-    confirmPath: 'https://automation.sionsemi.com/webhook/assignment/confirm',
-    projectsPath: 'https://automation.sionsemi.com/webhook/api/dashboard/projects',
-    // Replace with the authenticated user's ID from your login/session layer.
-    getCurrentUserId: () => sessionStorage.getItem('xtreme_user_id') || 'admin-user-id',
-    requestTimeoutMs: 20000
-  };
+  apiBaseUrl: 'https://automation.sionsemi.com',
 
+  extractPath: '/webhook/assignment/extract',
+  confirmPath: '/webhook/assignment/confirm',
+  projectsPath: '/webhook/api/dashboard/projects',
+
+  getCurrentUserId: () =>
+    sessionStorage.getItem('xtreme_user_id') || 'admin-user-id',
+
+  requestTimeoutMs: 20000
+};
   const $ = (selector) => document.querySelector(selector);
   const dialog = $('#assignmentDialog');
   const form = $('#confirmForm');
