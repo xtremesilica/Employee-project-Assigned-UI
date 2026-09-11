@@ -1,7 +1,7 @@
 (() => {
   // Point this to your secured n8n/API domain. Never place secrets in this file.
   const CONFIG = {
-    apiBaseUrl: 'https://YOUR-N8N-DOMAIN',
+    apiBaseUrl: 'https://automation.sionsemi.com/webhook/assignment/confirm',
     extractPath: '/webhook/assignment/extract',
     confirmPath: '/webhook/assignment/confirm',
     projectsPath: '/api/dashboard/projects',
