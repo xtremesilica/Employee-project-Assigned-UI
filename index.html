@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xtreme Silica — Assignment UI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button id="openAssignment" class="primary open-button">+ Assign Project</button>
+
+  <dialog id="assignmentDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-shell">
+      <header class="dialog-header">
+        <div>
+          <p class="eyebrow">PROJECT CONTROL</p>
+          <h1 id="dialogTitle">Create an assignment</h1>
+          <p class="subtitle">Describe it naturally. Review the extracted details before saving.</p>
+        </div>
+        <button id="closeAssignment" class="icon-button" aria-label="Close">×</button>
+      </header>
+
+      <ol class="stepper" aria-label="Assignment progress">
+        <li class="active" data-step-indicator="1"><span>1</span>Instruction</li>
+        <li data-step-indicator="2"><span>2</span>Review</li>
+        <li data-step-indicator="3"><span>3</span>Created</li>
+      </ol>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="panel" data-step="1">
+        <label for="instruction">Informal assignment</label>
+        <textarea id="instruction" rows="7" maxlength="2000" placeholder="Example: Assign dashboard API integration to Karthikeya. Complete it by 20 September. Girish is the manager. Make this high priority."></textarea>
+        <div class="hint-row">
+          <small>Include the employee, manager, deadline and expected result.</small>
+          <small><span id="charCount">0</span>/2000</small>
+        </div>
+        <div class="actions">
+          <button class="secondary" data-close>Cancel</button>
+          <button id="extractButton" class="primary">Extract details with AI</button>
+        </div>
+      </section>
+
+      <form id="confirmForm" class="panel" data-step="2" hidden>
+        <div class="review-heading">
+          <div><h2>Confirm assignment</h2><p>Verify every field before creating the task.</p></div>
+          <span class="ai-badge">AI extracted</span>
+        </div>
+
+        <div class="form-grid">
+          <label class="wide">Project name<input name="project_name" required></label>
+          <label>Employee
+            <select name="employee_id" required><option value="">Select employee</option></select>
+          </label>
+          <label>Manager
+            <select name="manager_id" required><option value="">Select manager</option></select>
+          </label>
+          <label class="wide">Task title<input name="task_title" required></label>
+          <label class="wide">Task description<textarea name="task_description" rows="4" required></textarea></label>
+          <label>Priority
+            <select name="priority" required>
+              <option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option>
+            </select>
+          </label>
+          <label>Due date<input name="due_date" type="date" required></label>
+        </div>
+        <label class="confirm-check"><input id="managerConfirmation" type="checkbox" required> I reviewed these details and confirm this assignment.</label>
+        <div class="actions">
+          <button id="backButton" type="button" class="secondary">Back</button>
+          <button id="confirmButton" type="submit" class="primary">Confirm & create task</button>
+        </div>
+      </form>
+
+      <section class="panel success-panel" data-step="3" hidden>
+        <div class="success-icon">✓</div>
+        <h2>Assignment created</h2>
+        <p id="successMessage">The task was saved and dashboard data was refreshed.</p>
+        <div class="created-record">
+          <span>Project ID <strong id="createdProjectId">—</strong></span>
+          <span>Task ID <strong id="createdTaskId">—</strong></span>
+        </div>
+        <div class="actions centered"><button id="doneButton" class="primary">Done</button></div>
+      </section>
+    </div>
+  </dialog>
+
+  <script src="assignment-ui.js"></script>
+</body>
+</html>
